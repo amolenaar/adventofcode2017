@@ -40,7 +40,7 @@ defmodule Day5Test do
     count = instructions()
     |> jump2()
 
-    assert count == 27688760
+    assert count == 27_688_760
   end
 
 end
