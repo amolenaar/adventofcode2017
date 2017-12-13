@@ -56,7 +56,7 @@ defmodule Day6Test do
     MapSet.put(seen_set, distribution)
 
     {_, solution} = solve(distribution, seen_set)
-    assert solution - 1 == 0
+    assert solution - 1 == 2392
   end
 
 end

@@ -81,7 +81,7 @@ defmodule Day9Test do
 
     assert instructions() |> parse() |> score() == 7640
 
-    assert Agent.get(:garbage_counter, &(&1)) == 0
+    assert Agent.get(:garbage_counter, &(&1)) == 4368
   end
 
 end
