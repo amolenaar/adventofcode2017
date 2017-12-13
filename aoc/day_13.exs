@@ -1,7 +1,7 @@
 defmodule Day13Test do
   use ExUnit.Case
 
-  import Integer
+  import Integer, only: [mod: 2]
 
   def instructions do
     {:ok, lines} = File.open("aoc/day_13_input.txt", [:read], fn(file) ->
