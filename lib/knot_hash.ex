@@ -29,18 +29,24 @@ defmodule KnotHash do
     |> Enum.chunk_every(16)
     |> Enum.map(fn l -> Enum.reduce(l, &Bitwise.bxor/2) end)
 
-  defp to_hex_string(dense_hash),
+  def to_hex_string(dense_hash),
     do: dense_hash
     |> Enum.map(&Integer.to_string(&1, 16))
     |> Enum.map(&String.pad_leading(&1, 2, "0"))
     |> Enum.reduce(&(&2 <> &1))
     |> String.downcase
 
-  def knot_hash(data, lengths) do
+  def to_bin_string(dense_hash),
+    do: dense_hash
+    |> Enum.map(&Integer.to_string(&1, 2))
+    |> Enum.map(&String.pad_leading(&1, 8, "0"))
+    |> Enum.reduce(&(&2 <> &1))
+
+  def knot_hash(lengths) do
+    data = Range.new(0, 255) |> Enum.to_list
     all_lengths = repeat(lengths ++ [17, 31, 73, 47, 23], [], 64)
     hash(data, all_lengths)
     |> to_dense_hash
-    |> to_hex_string
   end
 
 end

@@ -25,19 +25,16 @@ defmodule Day10Test do
 
 
   test "Day 10 examples" do
-    data = Range.new(0, 255) |> Enum.to_list
-
-    assert knot_hash(data, '') == "a2582a3a0e66e6e86e3812dcb672a272"
-    assert knot_hash(data, 'AoC 2017') == "33efeb34ea91902bb2f59c9920caa6cd"
-    assert knot_hash(data, '1,2,3') == "3efbe78a8d82f29979031a4aa0b16a9d"
-    assert knot_hash(data, '1,2,4') == "63960835bcdc130f0b66d7ff4f6a5a8e"
+    assert knot_hash('') |> to_hex_string == "a2582a3a0e66e6e86e3812dcb672a272"
+    assert knot_hash('AoC 2017') |> to_hex_string == "33efeb34ea91902bb2f59c9920caa6cd"
+    assert knot_hash('1,2,3') |> to_hex_string == "3efbe78a8d82f29979031a4aa0b16a9d"
+    assert knot_hash('1,2,4') |> to_hex_string == "63960835bcdc130f0b66d7ff4f6a5a8e"
   end
 
   test "Day 10 part 2" do
-    data = Range.new(0, 255) |> Enum.to_list
     lengths = '83,0,193,1,254,237,187,40,88,27,2,255,149,29,42,100'
 
-    result= knot_hash(data, lengths)
+    result= knot_hash(lengths) |> to_hex_string
 
     assert result == "d9a7de4a809c56bf3a9465cb84392c8e"
   end
