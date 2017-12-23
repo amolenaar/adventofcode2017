@@ -1,7 +1,7 @@
 defmodule Day23Test do
   use ExUnit.Case
 
-  def instructions do
+  def instructions() do
     {:ok, lines} = File.open("aoc/day_23_input.txt", [:read], fn(file) ->
       IO.stream(file, :line) |> Enum.map(&String.split/1) |> Enum.map(&parse_line/1) |> Enum.into([])
     end)
@@ -50,28 +50,4 @@ defmodule Day23Test do
   test "day 23 part 1" do
     assert run_code(instructions()) == 3969
   end
-
-  def run_code2(instructions), do: run_code2(instructions, instructions, %{"a" => 1})
-
-  def run_code2([], _all_instr, regs), do: regs
-  def run_code2([instr | rest], all_instr, regs) do
-    case run(instr, regs) do
-      {:jump, val} ->
-        offset = -(Enum.count(rest) + 1 - val)
-        if offset < 0 do
-          run_code2(all_instr |> Enum.take(offset), all_instr, regs)
-        else
-          regs
-        end
-      {:mul, regs} ->
-        run_code2(rest, all_instr, regs)
-      regs -> run_code2(rest, all_instr, regs)
-    end
-  end
-
-  @tag timeout: 600_000
-  test "day 23 part 2" do
-    assert run_code2(instructions()) == 0
-  end
-
 end
