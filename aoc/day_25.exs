@@ -97,7 +97,8 @@ defmodule Day25Test do
 
   def checksum(tape), do: tape |> Map.values |> Enum.sum
 
-  test "day 125 part 1" do
-    assert run(@begin_state, @steps) |> checksum == {}
+  test "day 25 part 1" do
+    assert run(@begin_state, @steps) |> checksum == 2474
   end
+
 end
